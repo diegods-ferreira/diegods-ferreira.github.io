@@ -68,16 +68,25 @@ const colors = {
 };
 
 const components = {
-  Text: {
-    baseStyle: {
-      fontFamily: '"Varela Round"'
-    }
-  },
   Heading: {
     baseStyle: {
-      fontFamily: 'Montserrat'
+      fontFamily: 'Montserrat',
+      color: 'textPrimary.500'
     }
   }
 };
 
-export const theme = extendTheme({ config, colors, components });
+const styles = {
+  global: (props: any) => ({
+    body: {
+      fontFamily: '"Varela Round", sans-serif',
+      color: 'textSecondary.500'
+    },
+    'input, textarea, select': {
+      fontFamily: '"Varela Round", sans-serif',
+      color: 'textSecondary.500'
+    }
+  })
+};
+
+export const theme = extendTheme({ config, colors, components, styles });
