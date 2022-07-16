@@ -16,14 +16,8 @@ const NAV_LINKS: NavItem[] = [
 
 export const NavBar: React.FC<NavBarProps> = ({ activeMenu }) => {
   return (
-    <Center as="nav" w="100%" h="64px">
-      <HStack
-        h="100%"
-        w="100%"
-        maxW="1200px"
-        justifyContent="space-between"
-        alignItems="center"
-      >
+    <Center as="nav" w="100%" h="64px" pos="fixed" bgColor="white" boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)">
+      <HStack h="100%" w="100%" maxW="1200px" justifyContent="space-between" alignItems="center">
         <Avatar
           name="Diego Ferreira"
           bgGradient="linear(to-r, peachRed.500, peachOrange.500)"
@@ -33,11 +27,7 @@ export const NavBar: React.FC<NavBarProps> = ({ activeMenu }) => {
 
         <HStack h="100%" spacing="40px" alignItems="center">
           {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.href}
-              link={link}
-              isActive={activeMenu === link.href}
-            />
+            <NavLink key={link.href} link={link} isActive={activeMenu === link.href} />
           ))}
         </HStack>
       </HStack>

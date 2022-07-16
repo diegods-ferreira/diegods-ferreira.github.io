@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Heading, Text, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 
 import { NavBar } from '../components/nav-bar/nav-bar.component';
 import { NavItemHref } from '../components/nav-bar/nav-link.component';
+import { Hero } from '../components/hero.component';
 
 export const HomePage: React.FC = () => {
   const { ref: homeRef, inView: isHomeInView } = useInView();
@@ -17,11 +18,10 @@ export const HomePage: React.FC = () => {
   }, [isHomeInView]);
 
   return (
-    <VStack ref={homeRef} h="100vh">
+    <VStack ref={homeRef} spacing="0">
       <NavBar activeMenu={activeMenu} />
 
-      <Heading>Montserrat</Heading>
-      <Text>Varela Round</Text>
+      <Hero />
     </VStack>
   );
 };
