@@ -1,5 +1,16 @@
 import React from 'react';
-import { Heading, Text, VStack, Center, Image, Stack, keyframes, SlideFade, Box, ScaleFade } from '@chakra-ui/react';
+import {
+  Heading,
+  Text,
+  VStack,
+  Center,
+  Image,
+  Stack,
+  keyframes,
+  SlideFade,
+  ScaleFade,
+  useBreakpointValue
+} from '@chakra-ui/react';
 
 import profilePicture from '../assets/images/profile-picture.png';
 import backgroundImg from '../assets/images/abstract_background_with_a_low_poly_design.jpg';
@@ -25,6 +36,8 @@ const animationKeyframes = keyframes`
 `;
 
 export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = false }) => {
+  const profilePictureSize = useBreakpointValue({ base: '30vh', md: '50vh' });
+
   return (
     <Center
       ref={elementRef}
@@ -75,12 +88,12 @@ export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = 
           </SlideFade>
         </VStack>
 
-        <Box h={{ base: '30vh', md: '50vh' }}>
+        <Center>
           <ScaleFade
             in={inView}
             initialScale={0.8}
             transition={{ enter: { duration: 1.5 } }}
-            style={{ height: '100%' }}
+            style={{ width: profilePictureSize, height: profilePictureSize }}
           >
             <Image
               src={profilePicture}
@@ -92,7 +105,7 @@ export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = 
               animation={`${animationKeyframes} 2s infinite`}
             />
           </ScaleFade>
-        </Box>
+        </Center>
       </Stack>
     </Center>
   );
