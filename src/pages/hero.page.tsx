@@ -76,10 +76,16 @@ export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = 
         </VStack>
 
         <Box h={{ base: '30vh', md: '50vh' }}>
-          <ScaleFade in={inView} initialScale={0.8} transition={{ enter: { duration: 1.5 } }}>
+          <ScaleFade
+            in={inView}
+            initialScale={0.8}
+            transition={{ enter: { duration: 1.5 } }}
+            style={{ height: '100%' }}
+          >
             <Image
               src={profilePicture}
               alt="Diego Ferreira's profile picture"
+              h="100%"
               objectFit="contain"
               borderRadius="full"
               boxShadow="0 0 0 0 #ffc2c2"
