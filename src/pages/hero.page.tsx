@@ -22,9 +22,17 @@ const animationKeyframes = keyframes`
   }
 `;
 
-export const Hero: React.FC<HeroProps> = ({ topOffset }) => {
+export const HeroPage: React.FC<HeroProps> = ({ topOffset }) => {
   return (
-    <Center w="100%" h={`calc(100vh - ${topOffset}px)`} bgImage={`url(${backgroundImg})`} bgSize="cover">
+    <Center
+      w="100%"
+      h={`calc(100vh - ${topOffset}px)`}
+      bgImage={`url(${backgroundImg})`}
+      bgSize="cover"
+      borderBottom="1px"
+      borderStyle="solid"
+      borderColor="gray.200"
+    >
       <Stack
         direction={{ base: 'column-reverse', md: 'row' }}
         h="100%"

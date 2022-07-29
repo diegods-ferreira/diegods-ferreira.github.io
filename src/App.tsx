@@ -3,12 +3,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import { theme } from './global/styles/theme';
 
-import { HomePage } from './pages/home.page';
+import { RootPage } from './pages/root.page';
 
 export const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
-      <HomePage />
+      <RootPage />
     </ChakraProvider>
   );
 };
