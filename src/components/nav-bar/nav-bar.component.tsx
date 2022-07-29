@@ -41,9 +41,19 @@ export const NavBar: React.FC<NavBarProps> = ({ activeMenu, elmentRef }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box ref={elmentRef} w="100%" borderBottom="1px" borderStyle="solid" borderColor="gray.200">
+    <Box
+      as="nav"
+      ref={elmentRef}
+      w="100%"
+      borderBottom="1px"
+      borderStyle="solid"
+      borderColor="gray.200"
+      pos="fixed"
+      top="0"
+      bg="white"
+      zIndex="10"
+    >
       <Flex
-        bg="white"
         color="gray.600"
         maxW="1200px"
         minH="60px"

@@ -42,6 +42,7 @@ export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = 
     <Center
       ref={elementRef}
       w="100%"
+      mt={`${topOffset}px`}
       h={`calc(100vh - ${topOffset}px)`}
       bgImage={`url(${backgroundImg})`}
       bgSize="cover"

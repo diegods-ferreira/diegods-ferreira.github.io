@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IntersectionOptions, useInView } from 'react-intersection-observer';
-import { VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { NavBar } from '../components/nav-bar/nav-bar.component';
 import { NavItemHref } from '../components/nav-bar/nav-link.component';
@@ -9,8 +9,7 @@ import { HeroPage } from './hero.page';
 import { AboutPage } from './about.page';
 
 const inViewObserverOptions: IntersectionOptions = {
-  threshold: 0.3,
-  triggerOnce: true
+  threshold: 0.3
 };
 
 export const RootPage: React.FC = () => {
@@ -32,12 +31,12 @@ export const RootPage: React.FC = () => {
   }, [isHeroInView, isAboutInView]);
 
   return (
-    <VStack spacing="0">
+    <Box pos="relative">
       <NavBar elmentRef={navBarRef} activeMenu={activeMenu} />
 
       <HeroPage elementRef={heroRef} inView={isHeroInView} topOffset={navBarRef.current?.offsetHeight || 65} />
 
       <AboutPage elementRef={aboutRef} inView={isAboutInView} />
-    </VStack>
+    </Box>
   );
 };
