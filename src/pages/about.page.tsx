@@ -11,7 +11,7 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false }) => {
   return (
-    <Center ref={elementRef} w="100%" bg="whitesmoke">
+    <Center ref={elementRef} w="100%" bg="whitesmoke" overflowX="hidden">
       <VStack
         w="100%"
         maxW="1200px"
