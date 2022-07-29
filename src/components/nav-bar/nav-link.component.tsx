@@ -15,18 +15,18 @@ interface NavLinkProps {
 
 export const NavLink: React.FC<NavLinkProps> = ({ link, isActive }) => {
   return (
-    <Center
-      h="100%"
-      pos="relative"
-      role="group"
-      pointerEvents={isActive ? 'none' : 'all'}
-    >
+    <Center h={{ base: '32px', md: '100%' }} pos="relative" role="group" pointerEvents={isActive ? 'none' : 'all'}>
       <Link
         href={`#${link.href}`}
         h="100%"
-        px="8px"
+        borderRadius="full"
+        px={{ base: '32px', md: '8px' }}
         fontWeight={isActive ? 'bold' : 'normal'}
         color={isActive ? 'textPrimary.500' : 'textTertiary.500'}
+        bgGradient={{
+          base: isActive ? 'linear(to-r, peachOrange.500, white)' : 'white',
+          md: 'linear(to-r, white, white)'
+        }}
         _groupHover={{
           textDecor: 'none',
           color: 'textSecondary.500'
@@ -38,6 +38,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ link, isActive }) => {
       </Link>
 
       <Box
+        display={{ base: 'none', md: 'block' }}
         w={!isActive ? '0%' : '80%'}
         h="4px"
         borderRadius="2px"

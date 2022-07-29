@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { VStack } from '@chakra-ui/react';
 
@@ -7,6 +7,8 @@ import { NavItemHref } from '../components/nav-bar/nav-link.component';
 import { Hero } from '../components/hero.component';
 
 export const HomePage: React.FC = () => {
+  const navBarRef = useRef<any>(null);
+
   const { ref: homeRef, inView: isHomeInView } = useInView();
 
   const [activeMenu, setActiveMenu] = useState<NavItemHref>('home');
@@ -19,9 +21,9 @@ export const HomePage: React.FC = () => {
 
   return (
     <VStack ref={homeRef} spacing="0">
-      <NavBar activeMenu={activeMenu} />
+      <NavBar elmentRef={navBarRef} activeMenu={activeMenu} />
 
-      <Hero />
+      <Hero topOffset={navBarRef.current?.offsetHeight || 65} />
     </VStack>
   );
 };

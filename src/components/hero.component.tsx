@@ -4,6 +4,10 @@ import { Heading, Text, VStack, Center, Image, Stack, keyframes } from '@chakra-
 import profilePicture from '../assets/images/profile-picture.png';
 import backgroundImg from '../assets/images/abstract_background_with_a_low_poly_design.jpg';
 
+interface HeroProps {
+  topOffset: number;
+}
+
 const animationKeyframes = keyframes`
   0% {
     transform: scale(0.95);
@@ -18,16 +22,15 @@ const animationKeyframes = keyframes`
   }
 `;
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<HeroProps> = ({ topOffset }) => {
   return (
-    <Center w="100%" h="100vh" bgImage={`url(${backgroundImg})`} bgSize="cover">
+    <Center w="100%" h={`calc(100vh - ${topOffset}px)`} bgImage={`url(${backgroundImg})`} bgSize="cover">
       <Stack
         direction={{ base: 'column-reverse', md: 'row' }}
         h="100%"
         w="100%"
         maxW="1200px"
         spacing={{ base: '40px', md: '160px' }}
-        pt="64px"
         justifyContent="center"
         alignItems="center"
       >
