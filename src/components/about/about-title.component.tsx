@@ -7,7 +7,7 @@ interface AboutTitleProps {
 
 export const AboutTitle: React.FC<AboutTitleProps> = ({ children }) => {
   return (
-    <Heading maxW="360px" w="100%" position="relative" role="group" size={{ base: 'lg', md: 'xl' }}>
+    <Heading position="relative" role="group" size={{ base: 'lg', md: 'xl' }}>
       <Text color="textSecondary.500" transition="0.2s" _groupHover={{ color: 'textSecondary.700' }}>
         {children}
       </Text>

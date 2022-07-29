@@ -1,11 +1,13 @@
 import React from 'react';
-import { Heading, Text, VStack, Center, Image, Stack, keyframes } from '@chakra-ui/react';
+import { Heading, Text, VStack, Center, Image, Stack, keyframes, SlideFade, Box, ScaleFade } from '@chakra-ui/react';
 
 import profilePicture from '../assets/images/profile-picture.png';
 import backgroundImg from '../assets/images/abstract_background_with_a_low_poly_design.jpg';
 
 interface HeroProps {
+  elementRef: any;
   topOffset: number;
+  inView?: boolean;
 }
 
 const animationKeyframes = keyframes`
@@ -22,9 +24,10 @@ const animationKeyframes = keyframes`
   }
 `;
 
-export const HeroPage: React.FC<HeroProps> = ({ topOffset }) => {
+export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = false }) => {
   return (
     <Center
+      ref={elementRef}
       w="100%"
       h={`calc(100vh - ${topOffset}px)`}
       bgImage={`url(${backgroundImg})`}
@@ -44,33 +47,46 @@ export const HeroPage: React.FC<HeroProps> = ({ topOffset }) => {
       >
         <VStack w="100%" alignItems="flex-start" spacing="32px" p="24px">
           <VStack w="100%" alignItems="flex-start">
-            <Text color="textTertiary.500">Olá, sou</Text>
-            <Heading size="2xl">Diego Ferreira</Heading>
-            <Heading
-              size="md"
-              fontWeight="medium"
-              bgGradient="linear(to-r, textSecondary.500, textTertiary.500)"
-              bgClip="text"
-            >
-              Desenvolvedor Front-end
-            </Heading>
+            <SlideFade in={inView} offsetX="-80px" transition={{ enter: { duration: 0.5 } }}>
+              <Text color="textTertiary.500">Olá, sou</Text>
+            </SlideFade>
+
+            <SlideFade in={inView} offsetX="-80px" transition={{ enter: { duration: 0.5, delay: 0.5 } }}>
+              <Heading size="2xl">Diego Ferreira</Heading>
+            </SlideFade>
+
+            <SlideFade in={inView} offsetX="-80px" transition={{ enter: { duration: 0.5, delay: 1 } }}>
+              <Heading
+                size="md"
+                fontWeight="medium"
+                bgGradient="linear(to-r, textSecondary.500, textTertiary.500)"
+                bgClip="text"
+              >
+                Desenvolvedor Front-end
+              </Heading>
+            </SlideFade>
           </VStack>
 
-          <Text>
-            Apaixonado pelo desenvolvimento de <i>softwares</i> com interfaces limpas, simples e intuitivas, aplicando
-            as melhores práticas e tecnologias disponíveis.
-          </Text>
+          <SlideFade in={inView} offsetX="-80px" transition={{ enter: { duration: 0.5, delay: 1.5 } }}>
+            <Text>
+              Apaixonado pelo desenvolvimento de <i>softwares</i> com interfaces limpas, simples e intuitivas, aplicando
+              as melhores práticas e tecnologias disponíveis.
+            </Text>
+          </SlideFade>
         </VStack>
 
-        <Image
-          src={profilePicture}
-          h={{ base: '30vh', md: '50vh' }}
-          alt="Diego Ferreira's profile picture"
-          objectFit="contain"
-          borderRadius="full"
-          boxShadow="0 0 0 0 #ffc2c2"
-          animation={`${animationKeyframes} 2s infinite`}
-        />
+        <Box h={{ base: '30vh', md: '50vh' }}>
+          <ScaleFade in={inView} initialScale={0.8} transition={{ enter: { duration: 1.5 } }}>
+            <Image
+              src={profilePicture}
+              alt="Diego Ferreira's profile picture"
+              objectFit="contain"
+              borderRadius="full"
+              boxShadow="0 0 0 0 #ffc2c2"
+              animation={`${animationKeyframes} 2s infinite`}
+            />
+          </ScaleFade>
+        </Box>
       </Stack>
     </Center>
   );

@@ -1,12 +1,17 @@
 import React from 'react';
-import { Center, Stack, StackDivider, VStack } from '@chakra-ui/react';
+import { Center, SlideFade, Stack, StackDivider, VStack } from '@chakra-ui/react';
 
 import { AboutItem } from '../components/about/about-item.component';
 import { AboutTitle } from '../components/about/about-title.component';
 
-export const AboutPage: React.FC = () => {
+interface AboutPageProps {
+  elementRef: any;
+  inView?: boolean;
+}
+
+export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false }) => {
   return (
-    <Center w="100%" bg="whitesmoke">
+    <Center ref={elementRef} w="100%" bg="whitesmoke">
       <VStack
         w="100%"
         maxW="1200px"
@@ -16,26 +21,35 @@ export const AboutPage: React.FC = () => {
         divider={<StackDivider />}
       >
         <Stack w="100%" direction={{ base: 'column', md: 'row' }} spacing="40px" alignItems="flex-start">
-          <AboutTitle>Sobre mim</AboutTitle>
+          <SlideFade
+            in={inView}
+            offsetX="-80px"
+            transition={{ enter: { duration: 0.5 } }}
+            style={{ maxWidth: '360px', width: '100%' }}
+          >
+            <AboutTitle>Sobre mim</AboutTitle>
+          </SlideFade>
 
           <VStack flex="1" alignItems="flex-start" spacing={{ base: '8px', md: '16px' }}>
-            <AboutItem>
+            <AboutItem inView={inView} delay={0.2}>
               Sou um desenvolvedor <i>front-end</i>, que mora em São Paulo - Brasil.
             </AboutItem>
 
-            <AboutItem>
+            <AboutItem inView={inView} delay={0.3}>
               Gosto de projetar e construir sites e aplicativos <i>web</i> bonitos e funcionais, tendo um cuidado
               especial para produzir um código limpo e compreensível.
             </AboutItem>
 
-            <AboutItem>
+            <AboutItem inView={inView} delay={0.4}>
               Adoro trabalho em equipe e boa comunicação, sempre aberto a <i>feedback</i> e disposto a aprender coisas
               novas.
             </AboutItem>
 
-            <AboutItem>Prezo por boa organização interna e clareza quanto tudo que envolve o time.</AboutItem>
+            <AboutItem inView={inView} delay={0.5}>
+              Prezo por boa organização interna e clareza quanto tudo que envolve o time.
+            </AboutItem>
 
-            <AboutItem>
+            <AboutItem inView={inView} delay={0.6}>
               No meu tempo livre, gosto de jogar <i>videogames</i>, ler um bom livro ou conversar com amigos.
             </AboutItem>
           </VStack>

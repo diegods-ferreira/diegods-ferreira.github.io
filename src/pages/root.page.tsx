@@ -11,23 +11,30 @@ import { AboutPage } from './about.page';
 export const RootPage: React.FC = () => {
   const navBarRef = useRef<any>(null);
 
-  const { ref: homeRef, inView: isHomeInView } = useInView();
+  const { ref: heroRef, inView: isHeroInView } = useInView({ rootMargin: '-200px' });
+  const { ref: aboutRef, inView: isAboutInView } = useInView({ rootMargin: '-200px' });
 
   const [activeMenu, setActiveMenu] = useState<NavItemHref>('home');
 
   useEffect(() => {
-    if (isHomeInView) {
+    if (isHeroInView) {
       setActiveMenu('home');
+      console.log('isHeroInView');
     }
-  }, [isHomeInView]);
+
+    if (isAboutInView) {
+      setActiveMenu('about');
+      console.log('isAboutInView');
+    }
+  }, [isHeroInView, isAboutInView]);
 
   return (
-    <VStack ref={homeRef} spacing="0">
+    <VStack spacing="0">
       <NavBar elmentRef={navBarRef} activeMenu={activeMenu} />
 
-      <HeroPage topOffset={navBarRef.current?.offsetHeight || 65} />
+      <HeroPage elementRef={heroRef} inView={isHeroInView} topOffset={navBarRef.current?.offsetHeight || 65} />
 
-      <AboutPage />
+      <AboutPage elementRef={aboutRef} inView={isAboutInView} />
     </VStack>
   );
 };
