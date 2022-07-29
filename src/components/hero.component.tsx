@@ -1,8 +1,22 @@
 import React from 'react';
-import { Heading, Text, VStack, Center, Image, Stack } from '@chakra-ui/react';
+import { Heading, Text, VStack, Center, Image, Stack, keyframes } from '@chakra-ui/react';
 
 import profilePicture from '../assets/images/profile-picture.png';
 import backgroundImg from '../assets/images/abstract_background_with_a_low_poly_design.jpg';
+
+const animationKeyframes = keyframes`
+  0% {
+    transform: scale(0.95);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 50px transparent;
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 transparent;
+  }
+`;
 
 export const Hero: React.FC = () => {
   return (
@@ -42,6 +56,9 @@ export const Hero: React.FC = () => {
           h={{ base: '30vh', md: '50vh' }}
           alt="Diego Ferreira's profile picture"
           objectFit="contain"
+          borderRadius="full"
+          boxShadow="0 0 0 0 #ffc2c2"
+          animation={`${animationKeyframes} 2s infinite`}
         />
       </Stack>
     </Center>
