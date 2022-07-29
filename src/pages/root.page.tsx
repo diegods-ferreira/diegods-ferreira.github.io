@@ -19,12 +19,10 @@ export const RootPage: React.FC = () => {
   useEffect(() => {
     if (isHeroInView) {
       setActiveMenu('home');
-      console.log('isHeroInView');
     }
 
     if (isAboutInView) {
       setActiveMenu('about');
-      console.log('isAboutInView');
     }
   }, [isHeroInView, isAboutInView]);
 
