@@ -6,6 +6,7 @@ export type NavItemHref = 'home' | 'about' | 'projects' | 'contact';
 export interface NavItem {
   href: NavItemHref;
   label: string;
+  onClick: () => void;
 }
 
 interface NavLinkProps {
@@ -31,6 +32,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ link, isActive }) => {
           textDecor: 'none',
           color: 'textSecondary.500'
         }}
+        onClick={link.onClick}
       >
         <Center w="100%" h="100%">
           {link.label}

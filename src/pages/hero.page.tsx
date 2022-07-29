@@ -16,7 +16,7 @@ import profilePicture from '../assets/images/profile-picture.png';
 import backgroundImg from '../assets/images/abstract_background_with_a_low_poly_design.jpg';
 
 interface HeroProps {
-  elementRef: any;
+  inViewRef: any;
   topOffset: number;
   inView?: boolean;
 }
@@ -35,7 +35,7 @@ const animationKeyframes = keyframes`
   }
 `;
 
-export const HeroPage: React.FC<HeroProps> = ({ elementRef, topOffset, inView = false }) => {
+export const HeroPage: React.FC<HeroProps> = ({ inViewRef: elementRef, topOffset, inView = false }) => {
   const profilePictureSize = useBreakpointValue({ base: '30vh', md: '50vh' });
 
   return (

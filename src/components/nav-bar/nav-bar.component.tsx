@@ -5,39 +5,33 @@ import { Box, Flex, IconButton, Stack, Collapse, Icon, useDisclosure, Avatar } f
 import { NavItem, NavItemHref, NavLink } from './nav-link.component';
 
 interface NavBarProps {
+  navItems: NavItem[];
   activeMenu: NavItemHref;
   // eslint-disable-next-line react/no-unused-prop-types
   elmentRef?: any;
 }
 
-const NAV_LINKS: NavItem[] = [
-  { href: 'home', label: 'Início' },
-  { href: 'about', label: 'Sobre' },
-  { href: 'projects', label: 'Projetos' },
-  { href: 'contact', label: 'Contato' }
-];
-
-const DesktopNav: React.FC<NavBarProps> = ({ activeMenu }) => {
+const DesktopNav: React.FC<NavBarProps> = ({ navItems, activeMenu }) => {
   return (
     <Stack direction="row" spacing={4}>
-      {NAV_LINKS.map((link) => (
-        <NavLink key={link.href} link={link} isActive={activeMenu === link.href} />
+      {navItems.map((item) => (
+        <NavLink key={item.href} link={item} isActive={activeMenu === item.href} />
       ))}
     </Stack>
   );
 };
 
-const MobileNav: React.FC<NavBarProps> = ({ activeMenu }) => {
+const MobileNav: React.FC<NavBarProps> = ({ navItems, activeMenu }) => {
   return (
     <Stack bg="white" borderTop="1px" borderStyle="solid" borderColor="gray.200" p="16px" display={{ md: 'none' }}>
-      {NAV_LINKS.map((link) => (
-        <NavLink key={link.href} link={link} isActive={activeMenu === link.href} />
+      {navItems.map((item) => (
+        <NavLink key={item.href} link={item} isActive={activeMenu === item.href} />
       ))}
     </Stack>
   );
 };
 
-export const NavBar: React.FC<NavBarProps> = ({ activeMenu, elmentRef }) => {
+export const NavBar: React.FC<NavBarProps> = ({ navItems, activeMenu, elmentRef }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -81,13 +75,13 @@ export const NavBar: React.FC<NavBarProps> = ({ activeMenu, elmentRef }) => {
           />
 
           <Flex flex={{ base: 1 }} display={{ base: 'none', md: 'flex' }} justifyContent="flex-end">
-            <DesktopNav activeMenu={activeMenu} />
+            <DesktopNav navItems={navItems} activeMenu={activeMenu} />
           </Flex>
         </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav activeMenu={activeMenu} />
+        <MobileNav navItems={navItems} activeMenu={activeMenu} />
       </Collapse>
     </Box>
   );
