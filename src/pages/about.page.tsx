@@ -41,16 +41,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false
             </AboutItem>
 
             <AboutItem inView={inView} delay={0.4}>
-              Adoro trabalho em equipe e boa comunicação, sempre aberto a <i>feedback</i> e disposto a aprender coisas
+              Adoro trabalho em equipe e boa comunicação, sempre aberto a <i>feedbacks</i> e disposto a aprender coisas
               novas.
             </AboutItem>
 
             <AboutItem inView={inView} delay={0.5}>
-              Prezo por boa organização interna e clareza quanto tudo que envolve o time.
+              Prezo por boa organização interna e clareza quanto a tudo que envolve o time.
             </AboutItem>
 
             <AboutItem inView={inView} delay={0.6}>
-              No meu tempo livre, gosto de jogar <i>videogames</i>, ler um bom livro ou conversar com amigos.
+              No meu tempo livre gosto de jogar <i>videogames</i>, ler um bom livro ou conversar com amigos.
             </AboutItem>
           </VStack>
         </Stack>
