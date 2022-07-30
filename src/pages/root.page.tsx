@@ -48,7 +48,14 @@ export const RootPage: React.FC = () => {
     if (isAboutInView) {
       setActiveMenu('about');
     }
-  }, [isHeroInView, isAboutInView]);
+    if (isProjectsInView) {
+      setActiveMenu('projects');
+    }
+
+    if (isContactInView) {
+      setActiveMenu('contact');
+    }
+  }, [isHeroInView, isAboutInView, isProjectsInView, isContactInView]);
 
   return (
     <Box pos="relative">
