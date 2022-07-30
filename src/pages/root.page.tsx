@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { IntersectionOptions, useInView } from 'react-intersection-observer';
 import { Box } from '@chakra-ui/react';
 
-import { NavBar } from '../components/nav-bar/nav-bar.component';
-import { NavItem, NavItemHref } from '../components/nav-bar/nav-link.component';
-
 import { HeroPage } from './hero.page';
 import { AboutPage } from './about.page';
 import { ProjectsPage } from './projects.page';
 import { ContactPage } from './contact.page';
+
+import { NavBar } from '../components/nav-bar/nav-bar.component';
+import { NavItem, NavItemHref } from '../components/nav-bar/nav-link.component';
+import { ScrollToTopButton } from '../components/root/scroll-to-top-button.component';
 
 const inViewObserverOptions: IntersectionOptions = {
   threshold: 0.3
@@ -68,6 +69,8 @@ export const RootPage: React.FC = () => {
       <ProjectsPage elementRef={projectsInViewRef} inView={isProjectsInView} />
 
       <ContactPage elementRef={contactInViewRef} inView={isContactInView} />
+
+      <ScrollToTopButton isVisible={isAboutInView || isProjectsInView || isContactInView} />
     </Box>
   );
 };
