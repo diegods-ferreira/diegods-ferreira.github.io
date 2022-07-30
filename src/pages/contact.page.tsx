@@ -15,11 +15,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ elementRef, inView = f
     <Center ref={elementRef} w="100%" bg="textPrimary.500" overflowX="hidden">
       <VStack w="100%" maxW="1200px" px="24px" py={{ base: '64px', md: '80px' }} spacing="40px">
         <ScaleFade initialScale={0} in={inView} transition={{ enter: { duration: 0.5 } }}>
-          <Heading color="textTertiary.500">Contato</Heading>
+          <Heading color="textTertiary.500" size={{ base: 'lg', md: 'xl' }}>
+            Contato
+          </Heading>
         </ScaleFade>
 
         <ScaleFade initialScale={0} in={inView} transition={{ enter: { duration: 0.5, delay: 0.5 } }}>
-          <Image src={profilePicture} alt="Diego Ferreira's profile picture" boxSize="200px" />
+          <Image src={profilePicture} alt="Diego Ferreira's profile picture" boxSize={{ base: '120px', md: '200px' }} />
         </ScaleFade>
 
         <ScaleFade initialScale={0} in={inView} transition={{ enter: { duration: 0.5, delay: 1 } }}>
@@ -28,16 +30,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({ elementRef, inView = f
           </Text>
         </ScaleFade>
 
-        <HStack spacing="0" wrap="wrap" gap={{ base: '32px', md: '40px' }} justifyContent="center">
+        <HStack spacing="0" wrap="wrap" gap={{ base: '16px', md: '40px' }} justifyContent="center">
           <SocialMediaCard type="github" href="https://github.com/diegods-ferreira" inView={inView} delay={1.5} />
+
           <SocialMediaCard type="gitlab" href="https://gitlab.com/diegods-ferreira" inView={inView} delay={1.7} />
+
           <SocialMediaCard type="instagram" href="https://www.instagram.com/diegodsf/" inView={inView} delay={1.9} />
+
           <SocialMediaCard
             type="linkedin"
             href="https://www.linkedin.com/in/diego-de-souza-ferreira/"
             inView={inView}
             delay={2.1}
           />
+
           <SocialMediaCard type="twitter" href="https://twitter.com/diegoodsf" inView={inView} delay={2.3} />
         </HStack>
       </VStack>

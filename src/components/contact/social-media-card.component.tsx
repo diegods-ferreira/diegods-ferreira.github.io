@@ -38,7 +38,7 @@ export const SocialMediaCard: React.FC<SocialMediaCardProps> = ({ type, href, in
       }}
     >
       <Link href={href} target="_blank" role="group">
-        <Center boxSize={{ base: '64px', md: '80px' }} borderRadius="16px">
+        <Center boxSize={{ base: '56px', md: '80px' }} borderRadius="16px">
           <Icon
             as={icons[type]}
             boxSize={{ base: '20px', md: '24px' }}
