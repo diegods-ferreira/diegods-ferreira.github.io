@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, SlideFade, Stack, StackDivider, VStack } from '@chakra-ui/react';
+import { Center, Stack, StackDivider, VStack } from '@chakra-ui/react';
 
 import { AboutItem } from '../components/about/about-item.component';
 import { AboutTitle } from '../components/about/about-title.component';
@@ -21,14 +21,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false
         divider={<StackDivider />}
       >
         <Stack w="100%" direction={{ base: 'column', md: 'row' }} spacing="40px" alignItems="flex-start">
-          <SlideFade
-            in={inView}
-            offsetX="-80px"
-            transition={{ enter: { duration: 0.5 } }}
-            style={{ maxWidth: '360px', width: '100%' }}
-          >
-            <AboutTitle>Sobre mim</AboutTitle>
-          </SlideFade>
+          <AboutTitle inView={inView}>Sobre mim</AboutTitle>
 
           <VStack flex="1" alignItems="flex-start" spacing={{ base: '8px', md: '16px' }}>
             <AboutItem inView={inView} delay={0.2}>
