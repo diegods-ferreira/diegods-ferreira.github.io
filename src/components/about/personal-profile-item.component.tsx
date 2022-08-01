@@ -28,6 +28,7 @@ export const PersonalProfileItem: React.FC<PersonalProfileItemProps> = ({
           fontFamily="Montserrat"
           fontSize={fontSize}
           fontWeight={fontWeight}
+          textAlign="center"
           borderRadius="16px"
           cursor="pointer"
           transition="0.2s"

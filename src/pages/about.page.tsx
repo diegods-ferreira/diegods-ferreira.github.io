@@ -10,13 +10,13 @@ interface AboutPageProps {
   inView?: boolean;
 }
 
-const PERSONAL_PROFILE_ITEM_FONT_STYLES: Record<number, Record<string, string>> = {
-  0: { size: '2xl', weight: 'light' },
-  1: { size: '2xl', weight: 'light' },
-  2: { size: '3xl', weight: 'normal' },
-  3: { size: '3xl', weight: 'normal' },
-  4: { size: '4xl', weight: 'bold' },
-  5: { size: '4xl', weight: 'bold' }
+const PERSONAL_PROFILE_ITEM_FONT_STYLES: Record<number, Record<string, any>> = {
+  0: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
+  1: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
+  2: { size: { base: '2xl', md: '3xl' }, weight: 'normal' },
+  3: { size: { base: '2xl', md: '3xl' }, weight: 'normal' },
+  4: { size: { base: '3xl', md: '4xl' }, weight: 'bold' },
+  5: { size: { base: '3xl', md: '4xl' }, weight: 'bold' }
 };
 
 const getRandomNumberFromOneToFive = () => Math.round((Math.random() * 10) / 2);
