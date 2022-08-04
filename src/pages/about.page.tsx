@@ -4,34 +4,15 @@ import { Center, Stack, StackDivider, VStack, Wrap, WrapItem } from '@chakra-ui/
 import { AboutItem } from '../components/about/about-item.component';
 import { AboutTitle } from '../components/about/about-title.component';
 import { PersonalProfileItem } from '../components/about/personal-profile-item.component';
+import { SkillItem } from '../components/about/skill-item.component';
+
+import { personalProfileItems } from '../constants/personal-profile.constants';
+import { skillItems } from '../constants/skills.constants';
 
 interface AboutPageProps {
   elementRef: any;
   inView?: boolean;
 }
-
-const PERSONAL_PROFILE_ITEM_FONT_STYLES: Record<number, Record<string, any>> = {
-  0: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
-  1: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
-  2: { size: { base: '2xl', md: '3xl' }, weight: 'normal' },
-  3: { size: { base: '2xl', md: '3xl' }, weight: 'normal' },
-  4: { size: { base: '3xl', md: '4xl' }, weight: 'bold' },
-  5: { size: { base: '3xl', md: '4xl' }, weight: 'bold' }
-};
-
-const getRandomNumberFromOneToFive = () => Math.round((Math.random() * 10) / 2);
-
-const getPersonalProfileItemFontStyles = () => PERSONAL_PROFILE_ITEM_FONT_STYLES[getRandomNumberFromOneToFive()];
-const getPersonalProfileItemDelay = () => 1 + getRandomNumberFromOneToFive() * 0.2;
-
-const personalProfileItems = [
-  { label: 'pró-ativo', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
-  { label: 'adaptável', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
-  { label: 'autodidata', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
-  { label: 'dedicado', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
-  { label: 'trabalho em equipe', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
-  { label: 'criativo', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() }
-];
 
 export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false }) => {
   return (
@@ -77,7 +58,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false
             Perfil pessoal
           </AboutTitle>
 
-          <Wrap justify="center" spacing="16px" overflow="visible">
+          <Wrap justify={{ base: 'center', md: 'flex-start' }} spacing="16px" overflow="visible">
             {personalProfileItems.map((item) => (
               <WrapItem key={item.label}>
                 <PersonalProfileItem
@@ -88,6 +69,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false
                 >
                   {item.label}
                 </PersonalProfileItem>
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Stack>
+
+        <Stack w="100%" direction={{ base: 'column', md: 'row' }} spacing="40px" alignItems="flex-start">
+          <AboutTitle inView={inView} delay={1.8}>
+            Habilidades
+          </AboutTitle>
+
+          <Wrap justify={{ base: 'center', md: 'flex-start' }} spacing="16px" overflow="visible">
+            {skillItems.map((item) => (
+              <WrapItem key={item.label} boxSize={{ base: '64px', md: '80px' }}>
+                <SkillItem inView={inView} label={item.label} icon={item.icon} delay={item.delay} />
               </WrapItem>
             ))}
           </Wrap>
