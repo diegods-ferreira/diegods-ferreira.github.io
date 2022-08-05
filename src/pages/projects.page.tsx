@@ -1,5 +1,10 @@
 import React from 'react';
-import { Center } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Center, Heading, Text, VStack } from '@chakra-ui/react';
+
+import { getRepoReadme, getRepoReadmeHtml } from '../services/github.service';
 
 interface ProjectsPageProps {
   elementRef: any;
@@ -7,9 +12,24 @@ interface ProjectsPageProps {
 }
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({ elementRef, inView = false }) => {
+  const query = useQuery(['todos'], () => getRepoReadmeHtml('be-the-hero'), {
+    onError: (err) => console.log('Erro', err),
+    onSuccess: (response) => console.log(response)
+  });
+
   return (
     <Center ref={elementRef} w="100%" bg="textTertiary.500" overflowX="hidden">
-      <h1>ProjectsPage</h1>
+      <VStack w="100%" maxW="1200px" px="24px" py={{ base: '64px', md: '80px' }} spacing="40px">
+        <Heading>ProjectsPage</Heading>
+
+        {/* <Text color="textTertiary.50">{query.data?.content ? atob(query.data?.content) : 'Nada a mostrar'}</Text> */}
+
+        {query.data?.content ? (
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{query.data.content}</ReactMarkdown>
+        ) : (
+          <Text>Nada a mostrar</Text>
+        )}
+      </VStack>
     </Center>
   );
 };
