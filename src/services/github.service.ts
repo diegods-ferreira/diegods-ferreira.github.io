@@ -18,6 +18,8 @@ export const getRepoReadme = async (repoName: string) => {
 export const getRepoReadmeHtml = async (repoName: string) => {
   const repoReadme = await getRepoReadme(repoName);
 
+  console.log({ repoReadme });
+
   if (!repoReadme?.content) {
     return null;
   }
