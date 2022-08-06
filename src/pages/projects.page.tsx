@@ -12,7 +12,7 @@ interface ProjectsPageProps {
 }
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({ elementRef, inView = false }) => {
-  const query = useQuery(['todos'], async () => getRepoReadme('imagic'), {
+  const query = useQuery(['todos'], async () => getRepoReadme('ecoleta'), {
     onError: (err) => console.log('Erro', err),
     onSuccess: (response) => console.log(response)
   });
@@ -25,7 +25,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ elementRef, inView =
         {/* <Text color="textTertiary.50">{query.data?.content ? atob(query.data?.content) : 'Nada a mostrar'}</Text> */}
 
         {query.data ? (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{atob(query.data.content)}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{query.data.content}</ReactMarkdown>
         ) : (
           <Text>Nada a mostrar</Text>
         )}

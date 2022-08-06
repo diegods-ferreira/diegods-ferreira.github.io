@@ -1,4 +1,5 @@
 import axios from 'axios';
+import uft8 from 'utf8';
 
 const GITHUB_USERNAME = 'diegods-ferreira';
 
@@ -12,7 +13,11 @@ const githubApi = axios.create({
 
 export const getRepoReadme = async (repoName: string) => {
   const response = await githubApi.get(`/repos/${GITHUB_USERNAME}/${repoName}/readme`);
-  return response.data;
+
+  return {
+    ...response.data,
+    content: response.data?.content ? uft8.decode(atob(response.data.content)) : ''
+  };
 };
 
 export const getRepoReadmeHtml = async (repoName: string) => {
