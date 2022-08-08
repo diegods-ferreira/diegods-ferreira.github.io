@@ -26,7 +26,7 @@ export const ContactSection: React.FC<ContactPageProps> = ({ elementRef, inView 
 
         <ScaleFade initialScale={0} in={inView} transition={{ enter: { duration: 0.5, delay: 1 } }}>
           <Text color="textSecondary.50" fontSize={{ base: 'md', md: 'lg' }} align="center">
-            Você pode me contrar nas seguintes redes sociais
+            Você pode me encontrar nas seguintes redes sociais
           </Text>
         </ScaleFade>
 
