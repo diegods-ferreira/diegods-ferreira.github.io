@@ -29,7 +29,7 @@ const DesktopNav: React.FC<GeneralNavBarProps> = ({ navItems, activeMenu }) => {
 
 const MobileNav: React.FC<GeneralNavBarProps & MobileNavProps> = ({ navItems, activeMenu, isOpen }) => {
   return (
-    <Stack bg="white" borderTop="1px" borderStyle="solid" borderColor="gray.200" p="16px" display={{ md: 'none' }}>
+    <Stack borderTop="1px" borderStyle="solid" borderColor="gray.200" p="16px" display={{ md: 'none' }}>
       {navItems.map((item, index) => (
         <NavLink key={item.href} link={item} isActive={activeMenu === item.href} inView={isOpen} delay={index * 0.1} />
       ))}
@@ -50,7 +50,9 @@ export const NavBar: React.FC<GeneralNavBarProps & NavBarProps> = ({ navItems, a
       borderColor="gray.200"
       pos="fixed"
       top="0"
-      bg="white"
+      bgColor={isOpen ? 'white' : 'rgba(255, 255, 255, 0.75)'}
+      transition="0.5s"
+      backdropFilter="blur(8px)"
       zIndex="10"
     >
       <Flex
