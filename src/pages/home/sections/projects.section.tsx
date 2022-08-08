@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Center, Heading, SimpleGrid, SlideFade, VStack } from '@chakra-ui/react';
+import { Button, Center, Heading, ScaleFade, SimpleGrid, SlideFade, VStack } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 import { projects } from '../../../constants/projects.constant';
@@ -29,26 +29,32 @@ export const ProjectsSection: React.FC<ProjectsPageProps> = ({ elementRef, inVie
           ))}
         </SimpleGrid>
 
-        <Button
-          as={Link}
-          to="/projects"
-          color="textPrimary.300"
-          colorScheme="textTertiary"
-          px="32px"
-          rounded="full"
-          transition="0.5s"
-          _hover={{
-            transform: 'scale(1.1)',
-            color: 'textPrimary.400',
-            boxShadow:
-              '-5px -5px 10px rgba(255, 255, 255, .2), 5px 5px 10px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px rgba(255, 255, 255, 0.2)'
-          }}
-          _active={{
-            boxShadow: 'inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, .2)'
-          }}
+        <ScaleFade
+          in={inView}
+          initialScale={0}
+          transition={{ enter: { duration: 0.5, delay: (preferedProjectsTitles.length + 1) * 0.3 } }}
         >
-          Ver mais...
-        </Button>
+          <Button
+            as={Link}
+            to="/projects"
+            color="textPrimary.300"
+            colorScheme="textTertiary"
+            px="32px"
+            rounded="full"
+            transition="0.5s"
+            _hover={{
+              transform: 'scale(1.1)',
+              color: 'textPrimary.400',
+              boxShadow:
+                '-5px -5px 10px rgba(255, 255, 255, .2), 5px 5px 10px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px rgba(255, 255, 255, 0.2)'
+            }}
+            _active={{
+              boxShadow: 'inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, .2)'
+            }}
+          >
+            Ver mais...
+          </Button>
+        </ScaleFade>
       </VStack>
     </Center>
   );
