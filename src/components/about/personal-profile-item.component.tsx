@@ -2,7 +2,7 @@ import React from 'react';
 import { Center, ScaleFade, Text } from '@chakra-ui/react';
 
 interface PersonalProfileItemProps {
-  fontSize: string;
+  fontSize: string | Record<string, string>;
   fontWeight: string;
   inView?: boolean;
   delay?: number;
