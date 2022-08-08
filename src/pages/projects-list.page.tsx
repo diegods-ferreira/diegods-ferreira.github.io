@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
-import { Heading, HStack, IconButton, SimpleGrid, Tooltip, VStack } from '@chakra-ui/react';
+import { Heading, HStack, IconButton, SimpleGrid, SlideFade, Tooltip, VStack } from '@chakra-ui/react';
 
 import { ProjectCard } from '../components/projects/project-card.component';
 
@@ -27,24 +27,28 @@ export const ProjectsListPage: React.FC = () => {
         spacing={{ base: '16px', md: '40px' }}
         boxShadow="lg"
       >
-        <Tooltip label="Voltar à página inicial" hasArrow>
-          <IconButton
-            as={Link}
-            to="/"
-            icon={<FiArrowLeft size={24} />}
-            aria-label="Go back button"
-            variant="ghost"
-            bgColor="transparent"
-            color="textSecondary.500"
-            size={{ base: 'md', md: 'lg' }}
-            px="0 !important"
-            isRound
-          />
-        </Tooltip>
+        <SlideFade in offsetX="-100%" offsetY="0px" transition={{ enter: { duration: 0.5 } }}>
+          <Tooltip label="Voltar à página inicial" hasArrow>
+            <IconButton
+              as={Link}
+              to="/"
+              icon={<FiArrowLeft size={24} />}
+              aria-label="Go back button"
+              variant="ghost"
+              bgColor="transparent"
+              color="textSecondary.500"
+              size={{ base: 'md', md: 'lg' }}
+              px="0 !important"
+              isRound
+            />
+          </Tooltip>
+        </SlideFade>
 
-        <Heading size="md" color="textSecondary.500">
-          Meus projetos
-        </Heading>
+        <SlideFade in offsetX="100%" offsetY="0px" transition={{ enter: { duration: 0.5, delay: 0.5 } }}>
+          <Heading size="md" color="textSecondary.500">
+            Meus projetos
+          </Heading>
+        </SlideFade>
       </HStack>
 
       <VStack maxW="1200px" w="100%" pt="65px" px="24px" py={{ base: '64px', md: '80px' }}>
@@ -54,7 +58,7 @@ export const ProjectsListPage: React.FC = () => {
               key={project.title}
               project={project}
               inView
-              delay={0.2 * (index + 1)}
+              delay={0.2 * (index + 1) + 1}
               containerStyle={{
                 borderRadius: '16px',
                 boxShadow:
