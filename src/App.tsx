@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './styles/theme';
 
 import { HomePage } from './pages/home/home.page';
+import { ProjectsList } from './pages/projects-list.page';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +21,7 @@ export const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <HomePage />
+        <ProjectsList />
       </QueryClientProvider>
     </ChakraProvider>
   );
