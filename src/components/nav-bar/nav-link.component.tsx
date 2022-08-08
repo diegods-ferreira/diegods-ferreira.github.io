@@ -29,7 +29,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ link, isActive, inView = false
           color={isActive ? 'textPrimary.500' : 'textTertiary.500'}
           bgGradient={{
             base: isActive ? 'linear(to-r, peachOrange.500, white)' : 'white',
-            md: 'linear(to-r, white, white)'
+            md: 'linear(to-r, transparent, transparent)'
           }}
           _groupHover={{
             textDecor: 'none',
