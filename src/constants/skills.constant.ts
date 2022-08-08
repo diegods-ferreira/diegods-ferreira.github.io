@@ -1,4 +1,5 @@
 import { TbBrandReactNative } from 'react-icons/tb';
+import { IconType } from 'react-icons';
 import {
   SiAndroid,
   SiAngular,
@@ -28,9 +29,15 @@ import {
 
 import { getRandomNumberFromOneToFive } from '../utils/random-number-one-to-five.util';
 
+interface Skill {
+  label: string;
+  icon: IconType;
+  delay: number;
+}
+
 const getSkillItemDelay = () => 2 + getRandomNumberFromOneToFive() * 0.2;
 
-export const skillItems = [
+export const skillItems: Skill[] = [
   { label: 'HTML5', icon: SiHtml5, delay: getSkillItemDelay() },
   { label: 'CSS3', icon: SiCss3, delay: getSkillItemDelay() },
   { label: 'JavaScript', icon: SiJavascript, delay: getSkillItemDelay() },
