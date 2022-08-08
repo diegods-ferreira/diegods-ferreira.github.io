@@ -39,7 +39,7 @@ export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ isVisible 
         size={{ base: 'md', md: 'lg' }}
         variant="solid"
         bgColor="transparent"
-        color="textSecondary.50"
+        color="rgba(0, 0, 0, 0.5)"
         _hover={{}}
         _active={{}}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
