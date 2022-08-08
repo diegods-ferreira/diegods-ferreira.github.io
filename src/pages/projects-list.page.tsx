@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Heading, HStack, IconButton, SimpleGrid, Tooltip, VStack } from '@chakra-ui/react';
 
@@ -6,7 +7,7 @@ import { ProjectCard } from '../components/projects/project-card.component';
 
 import { projects } from '../constants/projects.constant';
 
-export const ProjectsList: React.FC = () => {
+export const ProjectsListPage: React.FC = () => {
   return (
     <VStack minH="100vh" bgColor="whitesmoke" spacing={{ base: '32px', md: '40px' }}>
       <HStack
@@ -28,6 +29,8 @@ export const ProjectsList: React.FC = () => {
       >
         <Tooltip label="Voltar à página inicial" hasArrow>
           <IconButton
+            as={Link}
+            to="/"
             icon={<FiArrowLeft size={24} />}
             aria-label="Go back button"
             variant="ghost"

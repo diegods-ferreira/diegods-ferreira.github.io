@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Center, Heading, SimpleGrid, SlideFade, VStack } from '@chakra-ui/react';
 
+import { Link } from 'react-router-dom';
 import { projects } from '../../../constants/projects.constant';
 
 import { ProjectCard } from '../../../components/projects/project-card.component';
@@ -29,6 +30,8 @@ export const ProjectsSection: React.FC<ProjectsPageProps> = ({ elementRef, inVie
         </SimpleGrid>
 
         <Button
+          as={Link}
+          to="/projects"
           color="textPrimary.300"
           colorScheme="textTertiary"
           px="32px"
