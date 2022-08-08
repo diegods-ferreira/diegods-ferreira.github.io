@@ -1,8 +1,8 @@
 import axios from 'axios';
 import uft8 from 'utf8';
 
-import { GithubRepo } from '../models/github-repo-info';
-import { GithubRepoReadme } from '../models/github-repo-readme-info.model';
+import { GithubRepo } from '../models/github-repo.model';
+import { GithubRepoReadme } from '../models/github-repo-readme.model';
 
 const GITHUB_USERNAME = 'diegods-ferreira';
 
