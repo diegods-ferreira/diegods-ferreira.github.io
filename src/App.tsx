@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { theme } from './styles/theme';
 
-import { RootPage } from './pages/home/home.page';
+import { HomePage } from './pages/home/home.page';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +20,7 @@ export const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <RootPage />
+        <HomePage />
       </QueryClientProvider>
     </ChakraProvider>
   );

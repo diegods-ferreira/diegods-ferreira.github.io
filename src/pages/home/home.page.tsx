@@ -20,7 +20,7 @@ const scrollIntoViewOptions: ScrollIntoViewOptions = {
   behavior: 'smooth'
 };
 
-export const RootPage: React.FC = () => {
+export const HomePage: React.FC = () => {
   const navBarRef = useRef<any>(null);
 
   const { ref: heroInViewRef, inView: isHeroInView, entry: heroElement } = useInView(inViewObserverOptions);
