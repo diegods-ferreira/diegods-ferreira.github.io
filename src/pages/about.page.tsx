@@ -6,8 +6,8 @@ import { AboutTitle } from '../components/about/about-title.component';
 import { PersonalProfileItem } from '../components/about/personal-profile-item.component';
 import { SkillItem } from '../components/about/skill-item.component';
 
-import { personalProfileItems } from '../constants/personal-profile.constants';
-import { skillItems } from '../constants/skills.constants';
+import { personalProfileItems } from '../constants/personal-profile.constant';
+import { skillItems } from '../constants/skills.constant';
 
 interface AboutPageProps {
   elementRef: any;
