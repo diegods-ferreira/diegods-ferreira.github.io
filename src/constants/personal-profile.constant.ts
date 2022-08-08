@@ -1,6 +1,17 @@
 import { getRandomNumberFromOneToFive } from '../utils/random-number-one-to-five.util';
 
-const PERSONAL_PROFILE_ITEM_FONT_STYLES: Record<number, Record<string, any>> = {
+interface FontStyles {
+  size: Record<string, string>;
+  weight: string;
+}
+
+interface PersonalProfileItem {
+  label: string;
+  fontStyles: FontStyles;
+  delay: number;
+}
+
+const PERSONAL_PROFILE_ITEM_FONT_STYLES: Record<number, FontStyles> = {
   0: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
   1: { size: { base: 'xl', md: '2xl' }, weight: 'light' },
   2: { size: { base: '2xl', md: '3xl' }, weight: 'normal' },
@@ -13,7 +24,7 @@ const getPersonalProfileItemFontStyles = () => PERSONAL_PROFILE_ITEM_FONT_STYLES
 
 const getPersonalProfileItemDelay = () => 1 + getRandomNumberFromOneToFive() * 0.2;
 
-export const personalProfileItems = [
+export const personalProfileItems: PersonalProfileItem[] = [
   { label: 'pró-ativo', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
   { label: 'adaptável', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
   { label: 'autodidata', fontStyles: getPersonalProfileItemFontStyles(), delay: getPersonalProfileItemDelay() },
