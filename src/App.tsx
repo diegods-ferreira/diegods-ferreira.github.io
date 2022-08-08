@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { theme } from './styles/theme';
 
-import { RootPage } from './pages/root.page';
+import { RootPage } from './pages/home/home.page';
 
 const queryClient = new QueryClient({
   defaultOptions: {

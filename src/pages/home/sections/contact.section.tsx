@@ -1,16 +1,16 @@
 import React from 'react';
 import { Center, Heading, HStack, Image, ScaleFade, Text, VStack } from '@chakra-ui/react';
 
-import { SocialMediaCard } from '../components/contact/social-media-card.component';
+import { SocialMediaCard } from '../../../components/contact/social-media-card.component';
 
-import profilePicture from '../assets/images/profile-picture.png';
+import profilePicture from '../../../assets/images/profile-picture.png';
 
 interface ContactPageProps {
   elementRef: any;
   inView?: boolean;
 }
 
-export const ContactPage: React.FC<ContactPageProps> = ({ elementRef, inView = false }) => {
+export const ContactSection: React.FC<ContactPageProps> = ({ elementRef, inView = false }) => {
   return (
     <Center ref={elementRef} w="100%" bg="textPrimary.500" overflowX="hidden">
       <VStack w="100%" maxW="1200px" px="24px" py={{ base: '64px', md: '80px' }} spacing="40px">

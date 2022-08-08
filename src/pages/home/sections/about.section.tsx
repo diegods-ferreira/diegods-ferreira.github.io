@@ -1,20 +1,20 @@
 import React from 'react';
 import { Center, Stack, StackDivider, VStack, Wrap, WrapItem } from '@chakra-ui/react';
 
-import { AboutItem } from '../components/about/about-item.component';
-import { AboutTitle } from '../components/about/about-title.component';
-import { PersonalProfileItem } from '../components/about/personal-profile-item.component';
-import { SkillItem } from '../components/about/skill-item.component';
+import { AboutItem } from '../../../components/about/about-item.component';
+import { AboutTitle } from '../../../components/about/about-title.component';
+import { PersonalProfileItem } from '../../../components/about/personal-profile-item.component';
+import { SkillItem } from '../../../components/about/skill-item.component';
 
-import { personalProfileItems } from '../constants/personal-profile.constant';
-import { skillItems } from '../constants/skills.constant';
+import { personalProfileItems } from '../../../constants/personal-profile.constant';
+import { skillItems } from '../../../constants/skills.constant';
 
 interface AboutPageProps {
   elementRef: any;
   inView?: boolean;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ elementRef, inView = false }) => {
+export const AboutSection: React.FC<AboutPageProps> = ({ elementRef, inView = false }) => {
   return (
     <Center ref={elementRef} w="100%" bg="whitesmoke" overflowX="hidden">
       <VStack

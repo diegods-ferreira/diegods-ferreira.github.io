@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Center, Heading, SimpleGrid, SlideFade, VStack } from '@chakra-ui/react';
 
-import { projects } from '../constants/projects.constant';
+import { projects } from '../../../constants/projects.constant';
 
-import { ProjectCard } from '../components/projects/project-card.component';
+import { ProjectCard } from '../../../components/projects/project-card.component';
 
 interface ProjectsPageProps {
   elementRef: any;
@@ -14,7 +14,7 @@ const preferedProjectsTitles = ['Peguei!', 'Go Barber', 'Be The Hero', 'Ecoleta'
 
 const proferedProjects = projects.filter((project) => preferedProjectsTitles.includes(project.title));
 
-export const ProjectsPage: React.FC<ProjectsPageProps> = ({ elementRef, inView = false }) => {
+export const ProjectsSection: React.FC<ProjectsPageProps> = ({ elementRef, inView = false }) => {
   return (
     <Center ref={elementRef} w="100%" bgColor="textTertiary.500" overflowX="hidden">
       <VStack w="100%" maxW="1200px" px="24px" py={{ base: '64px', md: '80px' }} spacing="40px">
