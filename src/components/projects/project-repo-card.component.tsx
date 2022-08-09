@@ -27,6 +27,8 @@ interface ProjectRepoCardProps {
   isLoading?: boolean;
   isError?: boolean;
   retryCallback?: () => any | Promise<any>;
+  onClick: () => void;
+  isSelected?: boolean;
 }
 
 interface ErrorFeedbackProps {
@@ -77,13 +79,35 @@ export const ProjectRepoCard: React.FC<ProjectRepoCardProps> = ({
   repo,
   isLoading = true,
   isError = false,
-  retryCallback
+  retryCallback,
+  onClick,
+  isSelected = false
 }) => {
+  const repoIndicators = [
+    { label: 'forks', icon: TbGitFork, value: repo?.forks_count },
+    { label: 'stars', icon: FiStar, value: repo?.stargazers_count },
+    { label: 'watchers', icon: FiEye, value: repo?.watchers_count },
+    { label: 'issues', icon: FiAlertCircle, value: repo?.open_issues_count }
+  ];
+
   return (
     <Box
+      as="button"
       p="32px"
+      borderWidth={isSelected ? '0' : '1px'}
       borderRadius="16px"
-      boxShadow="-5px -5px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #FFFFFF"
+      transition="0.2s"
+      boxShadow={
+        isSelected
+          ? '-5px -5px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #FFFFFF'
+          : 'none'
+      }
+      transform={`scale(${isSelected ? '1.025' : '1'})`}
+      disabled={isLoading || isError || isSelected}
+      onClick={onClick}
+      _hover={{
+        borderColor: 'textTertiary.500'
+      }}
     >
       <VStack w="100%" alignItems="flex-start" justifyContent="space-between" spacing="16px">
         {(() => {
@@ -100,47 +124,46 @@ export const ProjectRepoCard: React.FC<ProjectRepoCardProps> = ({
               <HStack w="100%">
                 <Icon as={FiBook} />
 
-                <Heading as="h3" size="sm" color="textSecondary.900" textAlign="left">
-                  <Link href={repo?.html_url} target="_blank" fontWeight="semibold">
+                <Heading
+                  as="h3"
+                  size="sm"
+                  color={isSelected ? 'textSecondary.900' : 'textSecondary.500'}
+                  textAlign="left"
+                  fontWeight="semibold"
+                  transition="0.2s"
+                >
+                  <Link href={repo?.html_url} target="_blank">
                     {repo?.name}
                   </Link>
                 </Heading>
               </HStack>
 
               {!!repo?.description && (
-                <Text flex="1" fontSize="sm">
+                <Text
+                  flex="1"
+                  fontSize="sm"
+                  textAlign="left"
+                  transition="0.2s"
+                  color={isSelected ? 'textSecondary.500' : 'textSecondary.200'}
+                >
                   {repo.description}
                 </Text>
               )}
 
               <HStack>
-                <Tooltip label={`${repo?.forks_count} forks`} hasArrow>
-                  <Tag size="sm" variant="outline" colorScheme="textTertiary">
-                    <TagLeftIcon boxSize="12px" as={TbGitFork} />
-                    <TagLabel>{repo?.forks_count}</TagLabel>
-                  </Tag>
-                </Tooltip>
-
-                <Tooltip label={`${repo?.stargazers_count} stars`} hasArrow>
-                  <Tag size="sm" variant="outline" colorScheme="textTertiary">
-                    <TagLeftIcon boxSize="12px" as={FiStar} />
-                    <TagLabel>{repo?.stargazers_count}</TagLabel>
-                  </Tag>
-                </Tooltip>
-
-                <Tooltip label={`${repo?.watchers_count} watchers`} hasArrow>
-                  <Tag size="sm" variant="outline" colorScheme="textTertiary">
-                    <TagLeftIcon boxSize="12px" as={FiEye} />
-                    <TagLabel>{repo?.watchers_count}</TagLabel>
-                  </Tag>
-                </Tooltip>
-
-                <Tooltip label={`${repo?.open_issues_count} issues`} hasArrow>
-                  <Tag size="sm" variant="outline" colorScheme="textTertiary">
-                    <TagLeftIcon boxSize="12px" as={FiAlertCircle} />
-                    <TagLabel>{repo?.open_issues_count}</TagLabel>
-                  </Tag>
-                </Tooltip>
+                {repoIndicators.map((indicator) => (
+                  <Tooltip key={indicator.label} label={`${indicator.value || 0} ${indicator.label}`} hasArrow>
+                    <Tag
+                      size="sm"
+                      variant="outline"
+                      colorScheme={isSelected ? 'gray' : 'textTertiary'}
+                      transition="0.2s"
+                    >
+                      <TagLeftIcon boxSize="12px" as={indicator.icon} />
+                      <TagLabel>{indicator.value || 0}</TagLabel>
+                    </Tag>
+                  </Tooltip>
+                ))}
               </HStack>
             </>
           );
