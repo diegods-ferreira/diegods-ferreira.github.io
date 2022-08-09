@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MotionStyle, TargetAndTransition, VariantLabels } from 'framer-motion';
-import { Avatar, Center, Heading, Image, SlideFade, Stack, Text, VStack } from '@chakra-ui/react';
+import { Heading, SlideFade, Stack, Text, VStack } from '@chakra-ui/react';
 
 import { Project } from '../../constants/projects.constant';
+import { ProjectAvatar } from './project-avatar.component';
 
 const defaultContainerStyle: MotionStyle = {
   borderRadius: '16px',
@@ -46,6 +48,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       whileTap={containerStyleWhileTap}
     >
       <Stack
+        as={Link}
+        to={`/projects/${project.slug}`}
         direction={{ base: 'column', md: 'row' }}
         alignItems={{ base: 'center' }}
         borderRadius="16px"
@@ -54,13 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         cursor="pointer"
         spacing={{ base: '16px', md: '32px' }}
       >
-        <Center boxSize={{ base: '96px', md: '120px' }} borderRadius="16px" p="8px">
-          {project.logo ? (
-            <Image src={project.logo} objectFit="contain" alt={project.title} />
-          ) : (
-            <Avatar name={project.title} />
-          )}
-        </Center>
+        <ProjectAvatar logo={project.logo} title={project.title || ''} />
 
         <VStack flex="1" alignItems="flex-start" spacing="16px">
           <VStack w="100%" alignItems={{ base: 'center', md: 'flex-start' }}>
