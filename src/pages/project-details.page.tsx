@@ -16,7 +16,8 @@ import {
   SkeletonText,
   Icon,
   Button,
-  StackDivider
+  StackDivider,
+  SlideFade
 } from '@chakra-ui/react';
 
 import { getRepo, getRepoReadme } from '../services/github.service';
@@ -93,47 +94,83 @@ export const ProjectDetailsPage: React.FC = () => {
           direction={{ base: 'column', md: 'row' }}
           alignItems={{ base: 'center', md: 'flex-start' }}
         >
-          <ProjectAvatar logo={project?.logo} title={project?.title || ''} />
+          <SlideFade in offsetX="-100%" offsetY="0px" transition={{ enter: { duration: 0.5, delay: 1 } }}>
+            <ProjectAvatar logo={project?.logo} title={project?.title || ''} />
+          </SlideFade>
 
           <VStack flex="1" alignItems="flex-start" spacing="32px">
             <HStack w="100%" justifyContent="space-between" alignItems="flex-start">
               <VStack w="100%" alignItems={{ base: 'center', md: 'flex-start' }} spacing="16px">
-                <Heading as="h2" color="textPrimary.500" textAlign="left">
-                  {project?.title}
-                </Heading>
+                <SlideFade in offsetX="0px" offsetY="100%" transition={{ enter: { duration: 0.5, delay: 1.2 } }}>
+                  <Heading as="h2" color="textPrimary.500" textAlign="left">
+                    {project?.title}
+                  </Heading>
+                </SlideFade>
 
                 {!!project?.subtitle && (
-                  <Heading as="h3" size="md" fontWeight="light" color="textPrimary.500">
-                    {project?.subtitle}
-                  </Heading>
+                  <SlideFade in offsetX="0px" offsetY="100%" transition={{ enter: { duration: 0.5, delay: 1.4 } }}>
+                    <Heading as="h3" size="md" fontWeight="light" color="textPrimary.500">
+                      {project?.subtitle}
+                    </Heading>
+                  </SlideFade>
                 )}
               </VStack>
             </HStack>
 
-            <Text>{project?.description}</Text>
+            <SlideFade in offsetX="0px" offsetY="100%" transition={{ enter: { duration: 0.5, delay: 1.6 } }}>
+              <Text>{project?.description}</Text>
+            </SlideFade>
           </VStack>
         </Stack>
 
-        <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} gap="24px">
-          {repoQueries.map((query) => (
-            <ProjectRepoCard
-              key={uuidv4()}
-              repo={query.data}
-              isLoading={query.isLoading || query.isFetching}
-              isError={query.isError}
-              retryCallback={query.refetch}
-              onClick={() => setSelectedProjectSlug(query.data?.name || '')}
-              isSelected={query.data?.name === selectedProjectSlug}
-            />
-          ))}
-        </SimpleGrid>
+        <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 1.8 } }}>
+          <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} gap="24px">
+            {repoQueries.map((query) => (
+              <ProjectRepoCard
+                key={uuidv4()}
+                repo={query.data}
+                isLoading={query.isLoading || query.isFetching}
+                isError={query.isError}
+                retryCallback={query.refetch}
+                onClick={() => setSelectedProjectSlug(query.data?.name || '')}
+                isSelected={query.data?.name === selectedProjectSlug}
+              />
+            ))}
+          </SimpleGrid>
+        </SlideFade>
 
         {!!selectedProjectSlug && (
           <VStack w="100%" spacing="24px" p="24px" borderWidth="1px" borderRadius="16px" divider={<StackDivider />}>
             <HStack w="100%" justifyContent="flex-start">
-              <Text>{selectedProjectSlug}</Text>
-              <Icon as={FiChevronRight} />
-              <Text fontWeight="bold">README.md</Text>
+              <SlideFade
+                in
+                offsetX="100%"
+                offsetY="0px"
+                transition={{ enter: { duration: 0.5 } }}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <Text>{selectedProjectSlug}</Text>
+              </SlideFade>
+
+              <SlideFade
+                in
+                offsetX="100%"
+                offsetY="0px"
+                transition={{ enter: { duration: 0.5, delay: 0.2 } }}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <Icon as={FiChevronRight} />
+              </SlideFade>
+
+              <SlideFade
+                in
+                offsetX="100%"
+                offsetY="0px"
+                transition={{ enter: { duration: 0.5, delay: 0.4 } }}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <Text fontWeight="bold">README.md</Text>
+              </SlideFade>
             </HStack>
 
             {(() => {
@@ -145,7 +182,11 @@ export const ProjectDetailsPage: React.FC = () => {
                 return <ReadmeErrorFeedback retryCallback={readmeQuery.refetch} />;
               }
 
-              return <ReactMarkdown>{readmeQuery.data?.content || ''}</ReactMarkdown>;
+              return (
+                <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 0.6 } }}>
+                  <ReactMarkdown>{readmeQuery.data?.content || ''}</ReactMarkdown>
+                </SlideFade>
+              );
             })()}
           </VStack>
         )}
