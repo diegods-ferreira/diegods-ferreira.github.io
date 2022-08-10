@@ -17,6 +17,8 @@ export interface Project {
   repos: ProjectRepo[];
 }
 
+export const GITHUB_USERNAME = 'diegods-ferreira';
+
 export const projects: Project[] = [
   {
     title: 'Peguei!',

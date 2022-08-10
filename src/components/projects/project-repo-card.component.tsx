@@ -132,9 +132,7 @@ export const ProjectRepoCard: React.FC<ProjectRepoCardProps> = ({
                   fontWeight="semibold"
                   transition="0.2s"
                 >
-                  <Link href={repo?.html_url} target="_blank">
-                    {repo?.name}
-                  </Link>
+                  {repo?.name}
                 </Heading>
               </HStack>
 

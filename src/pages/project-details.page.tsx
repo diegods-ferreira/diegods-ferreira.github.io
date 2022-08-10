@@ -16,12 +16,13 @@ import {
   Icon,
   Button,
   StackDivider,
-  SlideFade
+  SlideFade,
+  Link
 } from '@chakra-ui/react';
 
 import { getRepo, getRepoReadme } from '../services/github.service';
 
-import { projects } from '../constants/projects.constant';
+import { GITHUB_USERNAME, projects } from '../constants/projects.constant';
 
 import { TitleBar } from '../components/title-bar.component';
 import { ProjectAvatar } from '../components/projects/project-avatar.component';
@@ -64,9 +65,10 @@ const ReadmeErrorFeedback: React.FC<ReadmeErrorFeedbackProps> = ({ retryCallback
 export const ProjectDetailsPage: React.FC = () => {
   const { slug } = useParams();
 
-  const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
+  const [selectedRepoSlug, setSelectedRepoSlug] = useState('');
 
   const project = projects.find((proj) => proj.slug === slug)!;
+  const selectedRepo = project.repos.find((repo) => repo.name === selectedRepoSlug)!;
 
   const repoQueries = useQueries({
     queries: project.repos.map((repo) => {
@@ -79,8 +81,8 @@ export const ProjectDetailsPage: React.FC = () => {
 
   const readmeQuery = useQuery({
     queryKey: ['readme'],
-    queryFn: () => getRepoReadme(selectedProjectSlug),
-    enabled: !!selectedProjectSlug
+    queryFn: () => getRepoReadme(selectedRepoSlug),
+    enabled: !!selectedRepoSlug
   });
 
   return (
@@ -138,15 +140,23 @@ export const ProjectDetailsPage: React.FC = () => {
                 isLoading={query.isLoading || query.isFetching}
                 isError={query.isError}
                 retryCallback={query.refetch}
-                onClick={() => setSelectedProjectSlug(query.data?.name || '')}
-                isSelected={query.data?.name === selectedProjectSlug}
+                onClick={() => setSelectedRepoSlug(query.data?.name || '')}
+                isSelected={query.data?.name === selectedRepoSlug}
               />
             ))}
           </SimpleGrid>
         </SlideFade>
 
-        {!!selectedProjectSlug && (
-          <VStack w="100%" spacing="24px" p="24px" borderWidth="1px" borderRadius="16px" divider={<StackDivider />}>
+        {!!selectedRepoSlug && (
+          <VStack
+            w="100%"
+            spacing="24px"
+            py="24px"
+            px={{ base: '24px', md: '40px' }}
+            borderWidth="1px"
+            borderRadius="16px"
+            divider={<StackDivider />}
+          >
             <HStack w="100%" justifyContent="flex-start">
               <SlideFade
                 in
@@ -155,7 +165,9 @@ export const ProjectDetailsPage: React.FC = () => {
                 transition={{ enter: { duration: 0.5 } }}
                 style={{ display: 'flex', alignItems: 'center' }}
               >
-                <Text>{selectedProjectSlug}</Text>
+                <Link href={`https://www.github.com/${GITHUB_USERNAME}/${selectedRepo.name}`} target="_blank">
+                  {selectedRepo.name}
+                </Link>
               </SlideFade>
 
               <SlideFade
@@ -190,7 +202,7 @@ export const ProjectDetailsPage: React.FC = () => {
 
               return (
                 <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 0.6 } }}>
-                  <VStack spacing="32px">
+                  <VStack spacing={{ base: '24px', md: '32px' }}>
                     <Markdown content={readmeQuery.data?.content || ''} />
                   </VStack>
                 </SlideFade>
