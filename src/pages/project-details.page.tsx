@@ -17,7 +17,9 @@ import {
   Button,
   StackDivider,
   SlideFade,
-  Link
+  Link,
+  Divider,
+  ScaleFade
 } from '@chakra-ui/react';
 
 import { getRepo, getRepoReadme } from '../services/github.service';
@@ -68,7 +70,7 @@ export const ProjectDetailsPage: React.FC = () => {
   const [selectedRepoSlug, setSelectedRepoSlug] = useState('');
 
   const project = projects.find((proj) => proj.slug === slug)!;
-  const selectedRepo = project.repos.find((repo) => repo.name === selectedRepoSlug)!;
+  const selectedRepo = project.repos.find((repo) => repo.name === selectedRepoSlug);
 
   const repoQueries = useQueries({
     queries: project.repos.map((repo) => {
@@ -125,27 +127,45 @@ export const ProjectDetailsPage: React.FC = () => {
           </VStack>
         </Stack>
 
-        <SlideFade
-          in
-          offsetX="0px"
-          offsetY="100px"
-          transition={{ enter: { duration: 0.5, delay: 1.8 } }}
-          style={{ width: '100%' }}
-        >
-          <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} gap="24px">
-            {repoQueries.map((query) => (
-              <ProjectRepoCard
-                key={uuidv4()}
-                repo={query.data}
-                isLoading={query.isLoading || query.isFetching}
-                isError={query.isError}
-                retryCallback={query.refetch}
-                onClick={() => setSelectedRepoSlug(query.data?.name || '')}
-                isSelected={query.data?.name === selectedRepoSlug}
-              />
-            ))}
-          </SimpleGrid>
-        </SlideFade>
+        <ScaleFade in initialScale={0} transition={{ enter: { duration: 0.5, delay: 1.8 } }} style={{ width: '100%' }}>
+          <Divider />
+        </ScaleFade>
+
+        <VStack w="100%" alignItems="flex-start" spacing="16px">
+          <SlideFade
+            in
+            offsetX="0px"
+            offsetY="100px"
+            transition={{ enter: { duration: 0.5, delay: 2 } }}
+            style={{ width: '100%' }}
+          >
+            <Text fontFamily="Montserrat" fontWeight="light" fontSize="sm">
+              Selecione um repositório abaixo para visualizar seu README.md
+            </Text>
+          </SlideFade>
+
+          <SlideFade
+            in
+            offsetX="0px"
+            offsetY="100px"
+            transition={{ enter: { duration: 0.5, delay: 2.2 } }}
+            style={{ width: '100%' }}
+          >
+            <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} gap="24px">
+              {repoQueries.map((query) => (
+                <ProjectRepoCard
+                  key={uuidv4()}
+                  repo={query.data}
+                  isLoading={query.isLoading || query.isFetching}
+                  isError={query.isError}
+                  retryCallback={query.refetch}
+                  onClick={() => setSelectedRepoSlug(query.data?.name || '')}
+                  isSelected={query.data?.name === selectedRepoSlug}
+                />
+              ))}
+            </SimpleGrid>
+          </SlideFade>
+        </VStack>
 
         {!!selectedRepoSlug && (
           <VStack
@@ -165,8 +185,8 @@ export const ProjectDetailsPage: React.FC = () => {
                 transition={{ enter: { duration: 0.5 } }}
                 style={{ display: 'flex', alignItems: 'center' }}
               >
-                <Link href={`https://www.github.com/${GITHUB_USERNAME}/${selectedRepo.name}`} target="_blank">
-                  {selectedRepo.name}
+                <Link href={`https://www.github.com/${GITHUB_USERNAME}/${selectedRepo?.name}`} target="_blank">
+                  {selectedRepo?.name}
                 </Link>
               </SlideFade>
 
