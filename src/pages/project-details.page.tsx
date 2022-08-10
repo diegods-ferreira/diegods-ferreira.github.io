@@ -201,8 +201,14 @@ export const ProjectDetailsPage: React.FC = () => {
               }
 
               return (
-                <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 0.6 } }}>
-                  <VStack spacing={{ base: '24px', md: '32px' }}>
+                <SlideFade
+                  in
+                  offsetX="0px"
+                  offsetY="100px"
+                  transition={{ enter: { duration: 0.5, delay: 0.6 } }}
+                  style={{ width: '100%' }}
+                >
+                  <VStack w="100%" spacing={{ base: '24px', md: '32px' }}>
                     <Markdown content={readmeQuery.data?.content || ''} />
                   </VStack>
                 </SlideFade>

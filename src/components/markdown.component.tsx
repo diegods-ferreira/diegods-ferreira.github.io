@@ -1,7 +1,23 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Divider, Heading, Image, Link, OrderedList, Text, UnorderedList } from '@chakra-ui/react';
+import remarkGfm from 'remark-gfm';
+import {
+  Divider,
+  Heading,
+  Image,
+  Link,
+  OrderedList,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  UnorderedList
+} from '@chakra-ui/react';
 
 interface MarkdownProps {
   content: string;
@@ -10,6 +26,7 @@ interface MarkdownProps {
 export const Markdown: React.FC<MarkdownProps> = ({ content }) => {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{
         h1: ({ node, ...props }) => <Heading {...props} w="100%" as="h1" size="2xl" borderBottomWidth="1px" pb="5" />,
         h2: ({ node, ...props }) => <Heading {...props} w="100%" as="h2" size="xl" />,
@@ -21,8 +38,32 @@ export const Markdown: React.FC<MarkdownProps> = ({ content }) => {
         a: ({ node, ...props }) => <Link {...props} w="100%" color="blue.500" />,
         ul: ({ node, ordered, ...props }) => <UnorderedList {...props} w="100%" pl="24px" />,
         ol: ({ node, ordered, ...props }) => <OrderedList {...props} w="100%" pl="24px" />,
-        hr: ({ node, ...props }) => <Divider {...props} w="100%" />,
-        img: ({ node, ...props }) => <Image {...props} mx="auto" />
+        hr: ({ node, ...props }) => (
+          <Divider
+            {...props}
+            w="100%"
+            h="8px"
+            borderRadius="full"
+            boxShadow="-5px -5px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #FFFFFF"
+          />
+        ),
+        img: ({ node, ...props }) => <Image {...props} mx="auto" />,
+        table: ({ node, ...props }) => (
+          <TableContainer
+            w="100%"
+            whiteSpace="break-spaces"
+            p="8px"
+            borderRadius="16px"
+            boxShadow="-5px -5px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #FFFFFF"
+          >
+            <Table {...props} w="100%" variant="striped" />
+          </TableContainer>
+        ),
+        thead: ({ node, ...props }) => <Thead {...props} />,
+        tbody: ({ node, ...props }) => <Tbody {...props} />,
+        tr: ({ node, isHeader, ...props }) => <Tr {...props} />,
+        td: ({ node, isHeader, ...props }) => <Td {...props} />,
+        th: ({ node, isHeader, ...props }) => <Th {...props} />
       }}
     >
       {content}
