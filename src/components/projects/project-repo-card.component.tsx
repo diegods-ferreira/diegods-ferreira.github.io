@@ -8,7 +8,6 @@ import {
   Heading,
   HStack,
   Icon,
-  Link,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
