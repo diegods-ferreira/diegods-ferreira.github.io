@@ -51,7 +51,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ content }) => {
         table: ({ node, ...props }) => (
           <TableContainer
             w="100%"
-            whiteSpace="break-spaces"
+            whiteSpace={{ base: 'nowrap', md: 'break-spaces' }}
             p="8px"
             borderRadius="16px"
             boxShadow="-5px -5px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #FFFFFF"
