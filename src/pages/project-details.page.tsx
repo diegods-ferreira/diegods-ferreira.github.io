@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { FiAlertCircle, FiChevronRight } from 'react-icons/fi';
 
@@ -27,6 +26,7 @@ import { projects } from '../constants/projects.constant';
 import { TitleBar } from '../components/title-bar.component';
 import { ProjectAvatar } from '../components/projects/project-avatar.component';
 import { ProjectRepoCard } from '../components/projects/project-repo-card.component';
+import { Markdown } from '../components/markdown.component';
 
 interface ReadmeErrorFeedbackProps {
   retryCallback?: () => any | Promise<any>;
@@ -123,7 +123,13 @@ export const ProjectDetailsPage: React.FC = () => {
           </VStack>
         </Stack>
 
-        <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 1.8 } }}>
+        <SlideFade
+          in
+          offsetX="0px"
+          offsetY="100px"
+          transition={{ enter: { duration: 0.5, delay: 1.8 } }}
+          style={{ width: '100%' }}
+        >
           <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} gap="24px">
             {repoQueries.map((query) => (
               <ProjectRepoCard
@@ -184,7 +190,9 @@ export const ProjectDetailsPage: React.FC = () => {
 
               return (
                 <SlideFade in offsetX="0px" offsetY="100px" transition={{ enter: { duration: 0.5, delay: 0.6 } }}>
-                  <ReactMarkdown>{readmeQuery.data?.content || ''}</ReactMarkdown>
+                  <VStack spacing="32px">
+                    <Markdown content={readmeQuery.data?.content || ''} />
+                  </VStack>
                 </SlideFade>
               );
             })()}
