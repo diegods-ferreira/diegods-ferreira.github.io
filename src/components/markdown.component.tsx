@@ -62,8 +62,8 @@ export const Markdown: React.FC<MarkdownProps> = ({ content }) => {
         thead: ({ node, ...props }) => <Thead {...props} />,
         tbody: ({ node, ...props }) => <Tbody {...props} />,
         tr: ({ node, isHeader, ...props }) => <Tr {...props} />,
-        td: ({ children }) => <Td>{children}</Td>,
-        th: ({ children }) => <Th>{children}</Th>
+        td: ({ children, style }) => <Td style={style}>{children}</Td>,
+        th: ({ children, style }) => <Th style={style}>{children}</Th>
       }}
     >
       {content}
