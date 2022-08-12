@@ -1,10 +1,13 @@
 import { TbBrandReactNative } from 'react-icons/tb';
 import { IconType } from 'react-icons';
+import { ComponentWithAs, IconProps } from '@chakra-ui/react';
 import {
   SiAndroid,
   SiAngular,
   SiBootstrap,
+  SiChakraui,
   SiCss3,
+  SiDocker,
   SiExpo,
   SiFigma,
   SiGit,
@@ -27,11 +30,15 @@ import {
   SiYarn
 } from 'react-icons/si';
 
+import { TypeORMIcon } from '../assets/custom-icons/typeorm.custom-icon';
+
 import { getRandomNumberFromOneToFive } from '../utils/random-number-one-to-five.util';
+
+export type SkillIcon = IconType | ComponentWithAs<'svg', IconProps>;
 
 interface Skill {
   label: string;
-  icon: IconType;
+  icon: SkillIcon;
   delay: number;
 }
 
@@ -62,5 +69,8 @@ export const skillItems: Skill[] = [
   { label: 'MongoDB', icon: SiMongodb, delay: getSkillItemDelay() },
   { label: 'PostgreSQL', icon: SiPostgresql, delay: getSkillItemDelay() },
   { label: 'MySQL', icon: SiMysql, delay: getSkillItemDelay() },
-  { label: 'SQL Server', icon: SiMicrosoftsqlserver, delay: getSkillItemDelay() }
+  { label: 'SQL Server', icon: SiMicrosoftsqlserver, delay: getSkillItemDelay() },
+  { label: 'Docker', icon: SiDocker, delay: getSkillItemDelay() },
+  { label: 'Chakra UI', icon: SiChakraui, delay: getSkillItemDelay() },
+  { label: 'TypeORM', icon: TypeORMIcon, delay: getSkillItemDelay() }
 ];

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Center, Icon, ScaleFade, Tooltip } from '@chakra-ui/react';
-import { IconType } from 'react-icons';
+
+import { SkillIcon } from '../../constants/skills.constant';
 
 interface SkillItemProps {
   inView?: boolean;
   delay?: number;
   label: string;
-  icon: IconType;
+  icon: SkillIcon;
 }
 
 export const SkillItem: React.FC<SkillItemProps> = ({ inView = false, delay = 0, label, icon }) => {
