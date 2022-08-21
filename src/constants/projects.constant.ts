@@ -2,6 +2,7 @@ import pegueiLogoImg from '../assets/images/peguei-logo.png';
 import goBarberLogoImg from '../assets/images/go-barber-logo.png';
 import beTheHeroLogoImg from '../assets/images/be-the-hero-logo.png';
 import ecoletaLogoImg from '../assets/images/ecoleta-logo.png';
+import imagicLogoImg from '../assets/images/imagic-logo.png';
 
 interface ProjectRepo {
   name: string;
@@ -32,6 +33,13 @@ export const projects: Project[] = [
       { name: 'tg-fatec-peguei-mobile', label: 'Peguei! - Mobile App' },
       { name: 'tg-fatec-peguei-web', label: 'Peguei! - Web App' }
     ]
+  },
+  {
+    title: 'Imagic',
+    slug: 'imagic',
+    description: 'A simple image repository built with React and Material UI and the Unsplash Images API.',
+    logo: imagicLogoImg,
+    repos: [{ name: 'imagic' }]
   },
   {
     title: 'Go Barber',
