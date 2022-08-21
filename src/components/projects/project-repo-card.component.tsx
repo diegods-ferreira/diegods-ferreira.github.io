@@ -16,7 +16,9 @@ import {
   TagLeftIcon,
   Text,
   Tooltip,
-  VStack
+  VStack,
+  Wrap,
+  WrapItem
 } from '@chakra-ui/react';
 
 import { GithubRepo } from '../../models/github-repo.model';
@@ -145,6 +147,16 @@ export const ProjectRepoCard: React.FC<ProjectRepoCardProps> = ({
                 >
                   {repo.description}
                 </Text>
+              )}
+
+              {!!repo?.topics && (
+                <Wrap flexWrap="wrap">
+                  {repo.topics.map((topic) => (
+                    <WrapItem key={topic}>
+                      <Tag size="sm">{topic}</Tag>
+                    </WrapItem>
+                  ))}
+                </Wrap>
               )}
 
               <HStack>
