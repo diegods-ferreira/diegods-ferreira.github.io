@@ -35,6 +35,13 @@ export const projects: Project[] = [
     ]
   },
   {
+    title: 'eWallet',
+    slug: 'ewallet',
+    description: "A simple ReactJS app created to handle a person's personal finances.",
+    logo: 'https://github.com/diegods-ferreira/ewallet-web/blob/main/src/assets/images/logo.png?raw=true',
+    repos: [{ name: 'ewallet-web' }]
+  },
+  {
     title: 'Imagic',
     slug: 'imagic',
     description: 'A simple image repository built with React and Material UI and the Unsplash Images API.',

@@ -11,7 +11,7 @@ interface ProjectsPageProps {
   inView?: boolean;
 }
 
-const preferedProjectsTitles = ['Peguei!', 'Go Barber', 'Be The Hero', 'Ecoleta', 'Imagic'];
+const preferedProjectsTitles = ['Peguei!', 'eWallet', 'Go Barber', 'Be The Hero', 'Ecoleta', 'Imagic'];
 
 const proferedProjects = projects.filter((project) => preferedProjectsTitles.includes(project.title));
 
